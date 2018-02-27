@@ -1,4 +1,4 @@
-# the-molossian
+# The Molossian
 Michael Cabeza's capstone project.
 
 List of Features:
