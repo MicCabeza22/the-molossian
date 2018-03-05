@@ -5,8 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class TheMolossianApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(TheMolossianApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(TheMolossianApplication.class, args);
+    }
 }
