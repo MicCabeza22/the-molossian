@@ -7,7 +7,7 @@ Michael Cabeza's capstone project.
 - [ ] Login/logout
 - [ ] Profile Page (display profile image, list games, consoles, friends, etc.)
 - [ ] Edit profile (email, password, profile image)
-- [ ] Database (games (genres, titles, release date), users (consoles, usernames, emails, etc.))
+- [x] Database (games (genres, titles, release date), users (consoles, usernames, emails, etc.))
 - [ ] Custom error pages
 - [ ] Navbar (search, login, register, profile)
 - [ ] Header (what’s hot, new and upcoming, etc.)
