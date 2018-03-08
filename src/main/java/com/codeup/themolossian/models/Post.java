@@ -6,11 +6,17 @@ import javax.persistence.*;
 @Table(name = "posts")
 public class Post {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(columnDefinition = "text")
     private String body;
+
+    @OneToOne
+    private Game game;
+
+    @OneToOne
+    private Image image;
 
     @Column(nullable = false)
     private String title;

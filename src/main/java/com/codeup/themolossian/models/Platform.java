@@ -7,11 +7,10 @@ import java.util.List;
 @Table(name = "platforms")
 public class Platform {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToOne
-    @JoinColumn(name = "image_id")
+    @OneToOne
     private Image image;
 
     @Column(nullable = false, unique = true)

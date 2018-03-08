@@ -8,7 +8,7 @@ import java.util.List;
 @Table(name = "games")
 public class Game {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(columnDefinition = "text")

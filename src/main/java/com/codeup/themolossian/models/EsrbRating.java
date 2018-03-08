@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name = "esrbRatings")
 public class EsrbRating {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(nullable = false, unique = true)
