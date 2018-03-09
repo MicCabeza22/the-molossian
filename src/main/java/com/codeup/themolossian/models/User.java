@@ -45,6 +45,13 @@ public class User {
         this.games = games;
     }
 
+    public User(User copy) {
+        id = copy.id;
+        email = copy.email;
+        username = copy.username;
+        password = copy.password;
+    }
+
     public User() {
     }
 
