@@ -1,10 +1,38 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Register Now</title>
-</head>
+<head th:include="fragments/head :: head('Register New Account')"></head>
+<!--<head>-->
+    <!--<meta charset="UTF-8"/>-->
+    <!--<title>Register New Account</title>-->
+    <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"-->
+          <!--integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>-->
+<!--</head>-->
 <body>
-    <h1>Register a New Account</h1>
+<!--<nav th:replace="fragments/navbar :: mainNavbar"></nav>-->
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <form th:action="@{/logout}" th:method="post">
+                    <button class="btn-link btn" style="margin-top: 8px">Logout</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<h1>Register a New Account</h1>
+<form th:action="@{/register}" method="post" th:object="${user}">
+    <label for="username">Username</label>
+    <input id="username" th:field="*{username}"/>
+
+    <label for="email">Email</label>
+    <input id="email" th:field="*{email}"/>
+
+    <label for="password">Password</label>
+    <input id="password" type="password" th:field="*{password}"/>
+
+    <input value="Register" type="submit"/>
+</form>
 </body>
 </html>
