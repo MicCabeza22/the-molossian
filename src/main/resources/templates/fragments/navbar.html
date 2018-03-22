@@ -4,7 +4,16 @@
 <body>
 <nav th:fragment="navbar" class="navbar navbar-default">
     <div class="container-fluid">
+        <a class="navbar-brand" href="/">The Molossian</a>
+        <ul class="nav navbar-nav">
+            <li><a href="/games">Games</a></li>
+            <li><a href="/posts">Posts</a></li>
+            <li><a href="/users/events">Events</a></li>
+            <li><a href="/users">Users</a></li>
+        </ul>
         <ul class="nav navbar-nav navbar-right">
+            <li><a href="/users/profile/{id}">Profile</a></li>
+            <li><a href="/login">Login</a></li>
             <li>
                 <form th:action="@{/logout}" th:method="post">
                     <button class="btn-link btn" style="margin-top: 8px">Logout</button>
