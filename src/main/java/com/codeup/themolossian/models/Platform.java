@@ -7,7 +7,8 @@ import java.util.List;
 @Table(name = "platforms")
 public class Platform {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private long id;
 
     @OneToOne

@@ -2,9 +2,9 @@
 Michael Cabeza's capstone project.
 
 ## List of Features:
-- [ ] Account registration
+- [x] Account registration
 - [ ] Validations
-- [ ] Login/logout
+- [x] Login/logout
 - [ ] Profile Page (display profile image, list games, consoles, friends, etc.)
 - [ ] Edit profile (email, password, profile image)
 - [x] Database (games (genres, titles, release date), users (consoles, usernames, emails, etc.))

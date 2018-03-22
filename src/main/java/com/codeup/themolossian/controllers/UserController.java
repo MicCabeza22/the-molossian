@@ -7,11 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class UserController {
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
 
     public UserController(UserRepository userRepository, PasswordEncoder passwordEncoder) {
@@ -31,5 +32,14 @@ public class UserController {
         user.setPassword(hash);
         userRepository.save(user);
         return "redirect:/login";
+    }
+
+    @GetMapping("/users/profile/{id}")
+    public String showProfilePage(@PathVariable long id, Model model) {
+        User user = userRepository.findOne(id);
+
+        model.addAttribute("user", user);
+
+        return "users/profile";
     }
 }
