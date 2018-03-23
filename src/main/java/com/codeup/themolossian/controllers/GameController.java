@@ -17,7 +17,9 @@ public class GameController {
     @GetMapping("/games")
     public String showAllGames(Model model) {
         Iterable<Game> games = gameService.findAll();
+
         model.addAttribute("games", games);
+
         return "games/index";
     }
 }
