@@ -19,4 +19,8 @@ public class GameService {
     public Iterable<Game> findAll() {
         return gameRepository.findAll();
     }
+
+    public Game findOne(long id) {
+        return gameRepository.findOne(id);
+    }
 }
