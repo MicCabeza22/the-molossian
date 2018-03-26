@@ -15,6 +15,7 @@
         <ul class="nav navbar-nav navbar-right">
             <li sec:authorize="!isAuthenticated()"><a href="/register">Register</a></li>
             <li sec:authorize="!isAuthenticated()"><a href="/login">Login</a></li>
+            <!-- ERROR LOCATED BELLOW -->
             <li sec:authorize="isAuthenticated()"><a href="users/profile.html" th:href="@{/users(id=${user.id})}">Profile</a></li>
             <li sec:authorize="isAuthenticated()">
                 <form th:action="@{/logout}" th:method="post">
