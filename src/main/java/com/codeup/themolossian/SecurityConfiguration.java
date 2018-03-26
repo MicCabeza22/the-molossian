@@ -46,7 +46,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/profile/edit")
+                .antMatchers("/users/{id}/edit")
                 .authenticated()
         ;
     }

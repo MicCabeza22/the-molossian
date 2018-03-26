@@ -1,7 +1,9 @@
 package com.codeup.themolossian.controllers;
 
+import com.codeup.themolossian.models.Game;
 import com.codeup.themolossian.models.User;
 import com.codeup.themolossian.repositories.UserRepository;
+import com.codeup.themolossian.services.GameService;
 import com.codeup.themolossian.services.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -15,11 +17,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class UserController {
     private final UserRepository userRepository;
     private UserService userService;
+    private GameService gameService;
     private PasswordEncoder passwordEncoder;
 
-    public UserController(UserRepository userRepository, UserService userService, PasswordEncoder passwordEncoder) {
+    public UserController(UserRepository userRepository, UserService userService, GameService gameService,
+                          PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.userService = userService;
+        this.gameService = gameService;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -49,12 +54,23 @@ public class UserController {
         return "users/index";
     }
 
-    @GetMapping("/users/profile/{id}")
+    @GetMapping("/users/{id}")
     public String showProfilePage(@PathVariable long id, Model model) {
+        User user = userRepository.findOne(id);
+        Iterable<Game> games = gameService.findAll();
+
+        model.addAttribute("user", user);
+        model.addAttribute("games", games);
+
+        return "users/profile";
+    }
+
+    @GetMapping("/users/{id}/edit")
+    public String showEditProfilePage(@PathVariable long id, Model model) {
         User user = userRepository.findOne(id);
 
         model.addAttribute("user", user);
 
-        return "users/profile";
+        return "users/edit";
     }
 }

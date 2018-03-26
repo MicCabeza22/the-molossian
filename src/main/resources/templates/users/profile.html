@@ -5,5 +5,11 @@
 <nav th:replace="fragments/navbar :: navbar"></nav>
 
 <h1 th:text="${user.username}"></h1>
+
+<h2>Favorited Games</h2>
+
+<h2>Favorited Consoles</h2>
+
+<a class="btn btn-primary" th:href="@{/users/{id}/edit(id=${user.id})}" role="button">Edit Profile</a>
 </body>
 </html>
