@@ -1,8 +1,10 @@
 package com.codeup.themolossian.controllers;
 
+import com.codeup.themolossian.models.Event;
 import com.codeup.themolossian.models.Game;
 import com.codeup.themolossian.models.User;
 import com.codeup.themolossian.repositories.UserRepository;
+import com.codeup.themolossian.services.EventService;
 import com.codeup.themolossian.services.GameService;
 import com.codeup.themolossian.services.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,13 +19,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class UserController {
     private final UserRepository userRepository;
     private UserService userService;
+    private EventService eventService;
     private GameService gameService;
     private PasswordEncoder passwordEncoder;
 
-    public UserController(UserRepository userRepository, UserService userService, GameService gameService,
-                          PasswordEncoder passwordEncoder) {
+    public UserController(UserRepository userRepository, UserService userService, EventService eventService,
+                          GameService gameService, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.userService = userService;
+        this.eventService = eventService;
         this.gameService = gameService;
         this.passwordEncoder = passwordEncoder;
     }
@@ -72,5 +76,14 @@ public class UserController {
         model.addAttribute("user", user);
 
         return "users/edit";
+    }
+
+    @GetMapping("/users/events")
+    public String showAllEvents(Model model) {
+        Iterable<Event> events = eventService.findAll();
+
+        model.addAttribute("events", events);
+
+        return "users/events";
     }
 }
