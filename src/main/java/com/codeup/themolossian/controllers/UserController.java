@@ -60,7 +60,7 @@ public class UserController {
 
     @GetMapping("/users/{id}")
     public String showProfilePage(@PathVariable long id, Model model) {
-        User user = userRepository.findOne(id);
+        User user = userService.findOne(id);
         Iterable<Game> games = gameService.findAll();
 
         model.addAttribute("user", user);
@@ -71,11 +71,22 @@ public class UserController {
 
     @GetMapping("/users/{id}/edit")
     public String showEditProfilePage(@PathVariable long id, Model model) {
-        User user = userRepository.findOne(id);
+        User user = userService.findOne(id);
 
         model.addAttribute("user", user);
 
         return "users/edit";
+    }
+
+    @PostMapping("/users/{id}/edit")
+    public String editProfile(@PathVariable long id, @ModelAttribute User user) {
+        String hash = passwordEncoder.encode(user.getPassword());
+
+        user.setPassword(hash);
+        user.setId(id);
+        userService.save(user);
+
+        return "redirect:/users/" + id;
     }
 
     @GetMapping("/users/events")
