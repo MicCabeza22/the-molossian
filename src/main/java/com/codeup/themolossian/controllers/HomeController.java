@@ -9,4 +9,9 @@ public class HomeController {
     public String showHomePage() {
         return "home";
     }
+
+    @GetMapping("/about")
+    public String showAboutPage() {
+        return "about";
+    }
 }
