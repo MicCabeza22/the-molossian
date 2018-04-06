@@ -1,28 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:include="fragments/head :: head('Viewing All Users')"></head>
+<head th:include="fragments/head :: head('Editing Post')"></head>
 <body>
 <nav th:replace="fragments/navbar :: navbar"></nav>
 
 <div class="container">
-    <h1>Edit Profile</h1>
+    <h1>Edit Your Post</h1>
 
     <br/>
 
     <form th:action="@{/posts/{id}/edit(id=${post.id})}" method="post" th:object="${post}">
-        <div class="form-group col-xs-6 col-xs-offset-3 col-md-6 col-md-offset-3">
-            <label for="title">Email</label>
-            <input class="form-control" id="title" th:field="*{title}"/>
-        </div>
-
-        <div class="form-group col-xs-6 col-xs-offset-3 col-md-6 col-md-offset-3">
-            <label for="body">Password</label>
-            <textarea class="form-control" id="body" th:field="*{body}"></textarea>
-        </div>
-
-        <div class="form-group col-xs-6 col-xs-offset-3 col-md-6 col-md-offset-3">
-            <input class="form-control btn btn-success" value="Submit Changes" type="submit"/>
-        </div>
+        <div class="form-group">
+			<label for="title">Title</label>
+			<input class="form-control" id="title" th:field="*{title}"/>
+		</div>
+		
+		<div class="form-group">
+			<label for="description">Description</label>
+			<textarea class="form-control" rows="3" id="body" th:field="*{body}"></textarea>
+		</div>
     </form>
 </div>
 <footer th:include="fragments/footer :: footer"></footer>
