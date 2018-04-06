@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/head :: head('Create New Post')"></head>
+<body>
+<nav th:replace="fragments/navbar :: navbar"></nav>
+
+<div class="container">
+    <h1>Create a New Post</h1>
+    
+    <br/>
+    
+    <form th:action="@{/posts/create}" method="post" th:object="${post}">
+    	
+    </form>
+
+    <footer th:include="fragments/footer :: footer"></footer>
+</div>
+</body>
+</html>

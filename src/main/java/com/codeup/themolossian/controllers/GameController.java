@@ -6,6 +6,8 @@ import com.codeup.themolossian.services.GameService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class GameController {
@@ -27,7 +29,7 @@ public class GameController {
     }
     
     @GetMapping("/games/add")
-    public String showAddGameForm(Model model) {
+    public String showAddGameForm(Model model) {    	
     	model.addAttribute("game", new Game());
     	
     	return "games/add";

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class UserController {
@@ -79,12 +80,13 @@ public class UserController {
     }
 
     @PostMapping("/users/{id}/edit")
-    public String editProfile(@PathVariable long id, @ModelAttribute User user) {
+    public String editProfile(@PathVariable long id, @RequestParam(name = "email") String email) {
+    	User user = userRepository.findOne(id);
         String hash = passwordEncoder.encode(user.getPassword());
 
+        user.setEmail(email);
         user.setPassword(hash);
-        user.setId(id);
-        userService.save(user);
+        userRepository.save(user);
 
         return "redirect:/users/" + id;
     }

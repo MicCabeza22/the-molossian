@@ -19,6 +19,18 @@
 			<label for="description">Description</label>
 			<textarea class="form-control" rows="3" id="description" th:field="*{description}"></textarea>
 		</div>
+		
+		<div class="form-group">
+			<label for="esrbRating">ESRB Rating</label>
+			<select class="form-control" id="esrbRating" th:field="*{esrbRating}">
+				<option>EC (Early Childhood)</option>
+				<option>E (Everyone)</option>
+				<option>E10+ (Everyone 10+)</option>
+				<option>T (Teen)</option>
+				<option>M (Mature)</option>
+				<option>AO (Adults Only)</option>
+			</select>
+		</div>
 	</form>
 </div>
 </body>
