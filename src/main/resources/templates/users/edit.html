@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:include="fragments/head :: head('Viewing All Users')"></head>
+<head th:include="fragments/head :: head('Viewing All Users')">
+	<script src="https://static.filestackapi.com/v3/filestack.js"></script>
+</head>
 <body>
 <nav th:replace="fragments/navbar :: navbar"></nav>
 
@@ -19,7 +21,21 @@
             <label for="password">Password</label>
             <input class="form-control" id="password" type="password" th:field="*{password}"/>
         </div>
-
+        
+		<script type="text/javascript">
+			var fsClient = filestack.init('AoVKloqqkQyx2RsXGdC9Zz');
+			  function openPicker() {
+			    fsClient.pick({
+			      fromSources:["local_file_system","imagesearch","facebook","instagram","dropbox"],
+			      maxFiles:1,
+			      minFiles:1
+			    }).then(function(response) {
+			      // declare this function to handle response
+			      handleFilestack(response);
+			    });
+			  }
+		</script>
+        
         <div class="form-group col-xs-6 col-xs-offset-3 col-md-6 col-md-offset-3">
             <input class="form-control btn btn-success" value="Submit Changes" type="submit"/>
         </div>
