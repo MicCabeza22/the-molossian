@@ -23,13 +23,44 @@
 		<div class="form-group">
 			<label for="esrbRating">ESRB Rating</label>
 			<select class="form-control" id="esrbRating" th:field="*{esrbRating}">
-				<option>EC (Early Childhood)</option>
-				<option>E (Everyone)</option>
-				<option>E10+ (Everyone 10+)</option>
-				<option>T (Teen)</option>
-				<option>M (Mature)</option>
-				<option>AO (Adults Only)</option>
+				<option value="ec">EC (Early Childhood)</option>
+				<option value="e">E (Everyone)</option>
+				<option value="e10+">E10+ (Everyone 10+)</option>
+				<option value="t">T (Teen)</option>
+				<option value="m">M (Mature)</option>
+				<option value="ao">AO (Adults Only)</option>
 			</select>
+		</div>
+		
+		<div class="form-group">
+			<label for="platform">Platform</label>
+			<select class="form-control" id="platform" th:field="*{platform}">
+				<option value="wiiU">Wii U</option>
+				<option value="ps4">PlayStation 4</option>
+				<option value="xbOne">Xbox One</option>
+			</select>
+		</div>
+		
+		<div class="form-group">
+			<label for="rating">Rating</label>
+			<select class="form-control" id="rating" th:field="*{rating}">
+				<option value="0">0</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+			</select>
+		</div>
+		
+		<div class="form-group">
+			<label for="releaseDate">Release Date</label>
+			<input class="form-control" id="releaseDate" type="date" th:field="*{releaseDate}"/>
 		</div>
 		
 		<div class="form-group col-xs-6 col-xs-offset-3 col-md-6 col-md-offset-3">

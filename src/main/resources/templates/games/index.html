@@ -5,9 +5,17 @@
 <nav th:replace="fragments/navbar :: navbar"></nav>
 
 <div class="container">
-    <h1>All Games</h1>
+	<h1>All Games</h1>
+	
+	<br/>
+	
+	<div class="row">
+    	<div class="col-xs-6 col-xs-offset-3 col-md-6 col-md-offset-3">
+			<a class="btn btn-primary btn-block" href="/games/add" role="button">Add a New Game</a>
+		</div>
+	</div>
 
-    <footer th:include="fragments/footer :: footer"></footer>
+	<footer class="footer" th:include="fragments/footer :: footer"></footer>
 </div>
 </body>
 </html>
