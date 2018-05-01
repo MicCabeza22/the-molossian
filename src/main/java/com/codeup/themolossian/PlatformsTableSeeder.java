@@ -1,3 +1,5 @@
+package com.codeup.themolossian;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -5,10 +7,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
 
 import com.codeup.themolossian.models.Platform;
 import com.codeup.themolossian.repositories.PlatformRepository;
 
+@Component
 public class PlatformsTableSeeder implements CommandLineRunner {
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	private final PlatformRepository platformRepository;
@@ -20,7 +24,7 @@ public class PlatformsTableSeeder implements CommandLineRunner {
 		this.platformRepository = platformRepository;
 	}
 	
-	private List<Platform> seedPlatforms() {
+	private void seedPlatforms() {
 		List<Platform> platforms = Arrays.asList(
 			new Platform("Magnavox Odyssey"),
 			new Platform("Ping-O-Tronic"),
@@ -112,8 +116,6 @@ public class PlatformsTableSeeder implements CommandLineRunner {
 		);
 		
 		platformRepository.save(platforms);
-		
-		return platforms;
 	}
 
 	@Override
@@ -122,10 +124,11 @@ public class PlatformsTableSeeder implements CommandLineRunner {
 			log.info("app.env is not development, doing nothing.");
 			return;
 		}
+		
 		log.info("Deleting platforms...");
 		platformRepository.deleteAll();
 		log.info("Seeding platforms...");
-		List<Platform> platforms = seedPlatforms();
+		seedPlatforms();
 		log.info("Finished running seeders!");
 	}
 }
