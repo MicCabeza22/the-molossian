@@ -46,6 +46,11 @@ public class User {
         this.games = games;
     }
 
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
     public User(User copy) {
         id = copy.id;
         email = copy.email;

@@ -4,16 +4,20 @@
 <body>
 <nav th:replace="fragments/navbar :: navbar"></nav>
 
-<h1>All Users</h1>
+<div class="container">
+    <h1>All Users</h1>
 
-<div class="row">
-    <th:block th:each="user, i : ${users}">
-        <th:block th:if="${i.index % 4 == 0}"/>
-        <div class="col-xs-6 col-md-3">
-            <a th:href="@{/users/{id}(id=${user.id})}"><h3 th:text="${user.username}"></h3></a>
-        </div>
-        <th:block th:if="${i.index % 4 == 3 || i.count == i.size}"/>
-    </th:block>
+    <div class="row">
+        <th:block th:each="user, i : ${users}">
+            <th:block th:if="${i.index % 4 == 0}"/>
+            <div class="col-xs-6 col-md-3">
+                <h3 th:text="${user.username}"><a th:href="@{/users/{id}(id=${user.id})}"></a></h3>
+            </div>
+            <th:block th:if="${i.index % 4 == 3 || i.count == i.size}"/>
+        </th:block>
+    </div>
+
+    <footer th:include="fragments/footer :: footer"></footer>
 </div>
 </body>
 </html>

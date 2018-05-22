@@ -12,6 +12,10 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    public void save(User user) {
+        userRepository.save(user);
+    }
+
     public Iterable<User> findAll() {
         return userRepository.findAll();
     }

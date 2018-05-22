@@ -1,8 +1,10 @@
 package com.codeup.themolossian.controllers;
 
+import com.codeup.themolossian.models.Event;
 import com.codeup.themolossian.models.Game;
 import com.codeup.themolossian.models.User;
 import com.codeup.themolossian.repositories.UserRepository;
+import com.codeup.themolossian.services.EventService;
 import com.codeup.themolossian.services.GameService;
 import com.codeup.themolossian.services.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -12,18 +14,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class UserController {
     private final UserRepository userRepository;
     private UserService userService;
+    private EventService eventService;
     private GameService gameService;
     private PasswordEncoder passwordEncoder;
 
-    public UserController(UserRepository userRepository, UserService userService, GameService gameService,
-                          PasswordEncoder passwordEncoder) {
+    public UserController(UserRepository userRepository, UserService userService, EventService eventService,
+                          GameService gameService, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.userService = userService;
+        this.eventService = eventService;
         this.gameService = gameService;
         this.passwordEncoder = passwordEncoder;
     }
@@ -56,7 +61,7 @@ public class UserController {
 
     @GetMapping("/users/{id}")
     public String showProfilePage(@PathVariable long id, Model model) {
-        User user = userRepository.findOne(id);
+        User user = userService.findOne(id);
         Iterable<Game> games = gameService.findAll();
 
         model.addAttribute("user", user);
@@ -67,10 +72,31 @@ public class UserController {
 
     @GetMapping("/users/{id}/edit")
     public String showEditProfilePage(@PathVariable long id, Model model) {
-        User user = userRepository.findOne(id);
+        User user = userService.findOne(id);
 
         model.addAttribute("user", user);
 
         return "users/edit";
+    }
+
+    @PostMapping("/users/{id}/edit")
+    public String editProfile(@PathVariable long id, @RequestParam(name = "email") String email) {
+    	User user = userRepository.findOne(id);
+        String hash = passwordEncoder.encode(user.getPassword());
+
+        user.setEmail(email);
+        user.setPassword(hash);
+        userRepository.save(user);
+
+        return "redirect:/users/" + id;
+    }
+
+    @GetMapping("/users/events")
+    public String showAllEvents(Model model) {
+        Iterable<Event> events = eventService.findAll();
+
+        model.addAttribute("events", events);
+
+        return "users/events";
     }
 }

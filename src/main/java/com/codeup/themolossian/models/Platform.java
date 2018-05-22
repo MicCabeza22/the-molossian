@@ -25,6 +25,10 @@ public class Platform {
         this.name = name;
         this.games = games;
     }
+    
+    public Platform (String name) {
+    	this.name = name;
+    }
 
     public Platform() {
     }

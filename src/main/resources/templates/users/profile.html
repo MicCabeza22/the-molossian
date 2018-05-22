@@ -1,15 +1,26 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head th:include="fragments/head :: head('Viewing Profile')"></head>
 <body>
 <nav th:replace="fragments/navbar :: navbar"></nav>
 
-<h1 th:text="${user.username}"></h1>
+<div class="container">
+    <h1 th:text="${user.username}"></h1>
+    
+    <img alt="profileImage" src="/images" width="256" height="256"/>
 
-<h2>Favorited Games</h2>
+    <h2>Favorited Games</h2>
 
-<h2>Favorited Consoles</h2>
+    <h2>Favorited Consoles</h2>
 
-<a class="btn btn-primary" th:href="@{/users/{id}/edit(id=${user.id})}" role="button">Edit Profile</a>
+    <div sec:authorize="isAuthenticated()">
+        <div th:if="${#authentication.principal.id}">
+            <a class="btn btn-primary" th:href="@{/users/{id}/edit(id=${user.id})}" role="button">Edit Profile</a>
+        </div>
+    </div>
+
+    <footer th:include="fragments/footer :: footer"></footer>
+</div>
 </body>
 </html>
