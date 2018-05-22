@@ -48,6 +48,5 @@ public class EsrbRatingsTableSeeder implements CommandLineRunner {
 		esrbRatingRepository.deleteAll();
 		log.info("Seeding ESRB ratings...");
 		seedEsrbRatings();
-		log.info("Finished running seeders!");
 	}
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:include="fragments/head :: head('Viewing All Users')">
-<script type="text/javascript" src="https://static.filestackapi.com/v3/filestack.js"></script>
+<script src="https://static.filestackapi.com/v3/filestack.js"></script>
 </head>
 <body>
 <nav th:replace="fragments/navbar :: navbar"></nav>
@@ -26,20 +26,20 @@
         	<input class="form-control btn btn-default" type="button" value="Upload Profile Image"
         	id="uploadProfile" onclick="openPicker()"/>
         	<script>
-        	  var fsClient = filestack.init('AoVKloqqkQyx2RsXGdC9Zz');
-        	  function openPicker() {
-        		console.log("Picking profile image...");
-        		fsClient.pick({
-        		  fromSources:["local_file_system","url","imagesearch","facebook","instagram","googledrive","dropbox","evernote"],
-        		  maxFiles:1,
-        		  minFiles:1,
-        		  accept:["image/*"]
-        		}).then(function(response) {
-        		  // declare this function to handle response
-        		  handleFilestack(response);
-        		});
-        	  }
-        	</script>
+			  var fsClient = filestack.init('AoVKloqqkQyx2RsXGdC9Zz');
+			  function openPicker() {
+				console.log("Picking profile image...");
+				fsClient.pick({
+				  fromSources:["local_file_system","url","imagesearch","facebook","instagram","googledrive","dropbox","evernote"],
+				  maxFiles:1,
+				  minFiles:1,
+				  accept:["image/*"]
+				}).then(function(response) {
+				  // declare this function to handle response
+				  handleFilestack(response);
+				});
+			  }
+			</script>
         </div>
         
         <div class="form-group col-xs-6 col-xs-offset-3 col-md-6 col-md-offset-3">
@@ -47,6 +47,7 @@
         </div>
     </form>
 </div>
+
 <footer th:include="fragments/footer :: footer"></footer>
 </body>
 </html>
