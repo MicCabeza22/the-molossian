@@ -1,8 +1,14 @@
 package com.codeup.themolossian.controllers;
 
+import com.codeup.themolossian.models.EsrbRating;
 import com.codeup.themolossian.models.Game;
+import com.codeup.themolossian.repositories.EsrbRatingRepository;
 import com.codeup.themolossian.repositories.GameRepository;
 import com.codeup.themolossian.services.GameService;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,10 +17,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class GameController {
+	private final EsrbRatingRepository esrbRatingRepository;
 	private final GameRepository gameRepository;
     private GameService gameService;
 
-    public GameController(GameRepository gameRepository, GameService gameService) {
+    public GameController(EsrbRatingRepository esrbRatingRepository, GameRepository gameRepository,
+    		GameService gameService) {
+    	this.esrbRatingRepository = esrbRatingRepository;
         this.gameRepository = gameRepository;
     	this.gameService = gameService;
     }
@@ -30,6 +39,9 @@ public class GameController {
     
     @GetMapping("/games/add")
     public String showAddGameForm(Model model) {    	
+       	Iterable<EsrbRating> esrbRatings = esrbRatingRepository.findAll();
+    	
+    	model.addAttribute("esrbRatings", esrbRatings);
     	model.addAttribute("game", new Game());
     	
     	return "games/add";

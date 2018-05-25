@@ -23,13 +23,14 @@
 		
 		<div class="form-group">
 			<label for="esrbRating">ESRB Rating</label>
-			<select class="form-control" id="esrbRating" th:field="*{esrbRating}">
-				<option value="ec">EC (Early Childhood)</option>
+			<select class="form-control" id="esrbRating" name="esrbRating" th:field="*{esrbRating}">
+				<option th:each="esrbRating : ${esrbRatings}" th:value="${esrbRating.id}" th:text=${esrbRating.name}></option>
+				<!-- <option value="ec">EC (Early Childhood)</option>
 				<option value="e">E (Everyone)</option>
 				<option value="e10+">E10+ (Everyone 10+)</option>
 				<option value="t">T (Teen)</option>
 				<option value="m">M (Mature)</option>
-				<option value="ao">AO (Adults Only)</option>
+				<option value="ao">AO (Adults Only)</option> -->
 			</select>
 		</div>
 		
