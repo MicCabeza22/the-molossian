@@ -23,4 +23,8 @@ public class PostService {
     public Post findOne(long id) {
         return postRepository.findOne(id);
     }
+    
+    public void delete(long id) {
+    	postRepository.delete(id);
+    }
 }
