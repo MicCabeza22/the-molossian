@@ -24,7 +24,14 @@
 		<div class="form-group">
 			<label for="esrbRating">ESRB Rating</label>
 			<select class="form-control" id="esrbRating" name="esrbRating" th:field="*{esrbRating}">
-				<option th:each="esrbRating : ${esrbRatings}" th:value="${esrbRating}" th:text=#{esrbRating.name}></option>
+				<option th:each="esrbRating : ${esrbRatings}" th:value="${esrbRating.id}" th:text="${esrbRating.name}"></option>
+			</select>
+		</div>
+		
+		<div class="form-group">
+			<label for="genre">Genre</label>
+			<select class="form-control" id="genre" name="genre" th:field="*{genre}">
+				<option th:each="genre : ${genres}" th:value="${genre.id}" th:text="${genre.name}"></option>
 			</select>
 		</div>
 		
