@@ -46,7 +46,7 @@ public class GameController {
        	Iterable<Genre> genres = genreRepository.findAll();
     	
     	model.addAttribute("esrbRatings", esrbRatings);
-    	model.addAttribute("genre", genres);
+    	model.addAttribute("genres", genres);
     	model.addAttribute("game", new Game());
     	
     	return "games/add";
