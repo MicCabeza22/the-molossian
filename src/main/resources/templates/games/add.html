@@ -3,61 +3,80 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:include="fragments/head :: head('Add a Game')"></head>
 <body>
-<nav th:replace="fragments/navbar :: navbar"></nav>
-
-<div class="container">
-	<h1>Add a Game</h1>
+	<nav th:replace="fragments/navbar :: navbar"></nav>
 	
-	<br/>
+	<div class="container">
+		<h1>Add a Game</h1>
+		
+		<br/>
+		
+		<form th:action="@{/games/add}" method="post" th:object="${game}">
+			<div class="form-group">
+				<label for="title">Title</label>
+				<input class="form-control" id="title" th:field="*{title}"/>
+			</div>
+			
+			<div class="form-group">
+				<label for="description">Description</label>
+				<textarea class="form-control" rows="3" id="description" th:field="*{description}"></textarea>
+			</div>
+			
+			<div class="form-group">
+				<label for="esrbRating">ESRB Rating</label>
+				<select class="form-control" id="esrbRating" name="esrbRating" th:field="*{esrbRating}">
+					<option th:each="esrbRating : ${esrbRatings}" th:value="${esrbRating.id}" th:text="${esrbRating.name}"></option>
+				</select>
+			</div>
+			
+			<div class="form-group">
+				<label for="genre">Genre</label>
+				<select class="form-control" id="genre" name="genre" th:field="*{genre}">
+					<option th:each="genre : ${genres}" th:value="${genre.id}" th:text="${genre.name}"></option>
+				</select>
+			</div>
+			
+			<div class="form-group">
+				<label for="platform">Platform</label>
+				<select class="form-control" id="platform" name="platform" th:field="*{platform}">
+					<option th:each="platform : ${platforms}" th:value="${platform.id}" th:text="${platform.name}"></option>
+				</select>
+			</div>
+			
+			<div class="form-group">
+				<label for="rating">Rating</label>
+				<input class="form-control" id="rating" type="number" th:field="*{rating}"/>
+			</div>
+			
+			<div class="form-group">
+				<label for="releaseDate">Release Date</label>
+				<input class="form-control" id="releaseDate" type="date" th:field="*{releaseDate}"/>
+			</div>
+			
+			<div class="form-group">
+				<!-- FILESTACK API INTEGRATION -->
+				<input class="form-control btn btn-default" type="button" value="Upload Image" id="image" th:field="*{image}" onclick="openPicker()"/>
+			</div>
+			
+			<div class="form-group col-xs-6 col-xs-offset-3 col-md-6 col-md-offset-3">
+	            <input class="form-control btn btn-success" value="Add Game" type="submit"/>
+	        </div>
+		</form>
+	</div>
 	
-	<form th:action="@{/games/add}" method="post" th:object="${game}">
-		<div class="form-group">
-			<label for="title">Title</label>
-			<input class="form-control" id="title" th:field="*{title}"/>
-		</div>
-		
-		<div class="form-group">
-			<label for="description">Description</label>
-			<textarea class="form-control" rows="3" id="description" th:field="*{description}"></textarea>
-		</div>
-		
-		<div class="form-group">
-			<label for="esrbRating">ESRB Rating</label>
-			<select class="form-control" id="esrbRating" name="esrbRating" th:field="*{esrbRating}">
-				<option th:each="esrbRating : ${esrbRatings}" th:value="${esrbRating.id}" th:text="${esrbRating.name}"></option>
-			</select>
-		</div>
-		
-		<div class="form-group">
-			<label for="genre">Genre</label>
-			<select class="form-control" id="genre" name="genre" th:field="*{genre}">
-				<option th:each="genre : ${genres}" th:value="${genre.id}" th:text="${genre.name}"></option>
-			</select>
-		</div>
-		
-		<div class="form-group">
-			<label for="platform">Platform</label>
-			<select class="form-control" id="platform" th:field="*{platform}">
-				<option value="wiiU">Wii U</option>
-				<option value="ps4">PlayStation 4</option>
-				<option value="xbOne">Xbox One</option>
-			</select>
-		</div>
-		
-		<div class="form-group">
-			<label for="rating">Rating</label>
-			<input class="form-control" id="rating" type="number" th:field="*{rating}"/>
-		</div>
-		
-		<div class="form-group">
-			<label for="releaseDate">Release Date</label>
-			<input class="form-control" id="releaseDate" type="date" th:field="*{releaseDate}"/>
-		</div>
-		
-		<div class="form-group col-xs-6 col-xs-offset-3 col-md-6 col-md-offset-3">
-            <input class="form-control btn btn-success" value="Add Game" type="submit"/>
-        </div>
-	</form>
-</div>
+	<script src="https://static.filestackapi.com/v3/filestack.js"></script>
+	<script type="text/javascript">
+	  var fsClient = filestack.init('AoVKloqqkQyx2RsXGdC9Zz');
+	  function openPicker() {
+	    fsClient.pick({
+	      fromSources:["local_file_system","url","imagesearch","facebook","instagram","dropbox"],
+	      accept:["image/*"],
+	      minFiles:1,
+	      maxFiles:1
+	    }).then(function(response) {
+	      // declare this function to handle response
+	      handleFilestack(response);
+	    });
+	  }
+	</script>
 </body>
 </html>

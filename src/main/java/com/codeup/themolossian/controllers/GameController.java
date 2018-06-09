@@ -3,9 +3,11 @@ package com.codeup.themolossian.controllers;
 import com.codeup.themolossian.models.EsrbRating;
 import com.codeup.themolossian.models.Game;
 import com.codeup.themolossian.models.Genre;
+import com.codeup.themolossian.models.Platform;
 import com.codeup.themolossian.repositories.EsrbRatingRepository;
 import com.codeup.themolossian.repositories.GameRepository;
 import com.codeup.themolossian.repositories.GenreRepository;
+import com.codeup.themolossian.repositories.PlatformRepository;
 import com.codeup.themolossian.services.GameService;
 
 import org.springframework.stereotype.Controller;
@@ -19,15 +21,18 @@ public class GameController {
 	private final EsrbRatingRepository esrbRatingRepository;
 	private final GenreRepository genreRepository;
 	private final GameRepository gameRepository;
+	private final PlatformRepository platformRepository;
     private GameService gameService;
 
     public GameController(EsrbRatingRepository esrbRatingRepository,
     		GenreRepository genreRepository,
     		GameRepository gameRepository,
+    		PlatformRepository platformRepository,
     		GameService gameService) {
     	this.esrbRatingRepository = esrbRatingRepository;
     	this.genreRepository = genreRepository;
         this.gameRepository = gameRepository;
+        this.platformRepository = platformRepository;
     	this.gameService = gameService;
     }
 
@@ -44,9 +49,11 @@ public class GameController {
     public String showAddGameForm(Model model) {    	
        	Iterable<EsrbRating> esrbRatings = esrbRatingRepository.findAll();
        	Iterable<Genre> genres = genreRepository.findAll();
+       	Iterable<Platform> platforms = platformRepository.findAll();
     	
     	model.addAttribute("esrbRatings", esrbRatings);
     	model.addAttribute("genres", genres);
+    	model.addAttribute("platforms", platforms);
     	model.addAttribute("game", new Game());
     	
     	return "games/add";
