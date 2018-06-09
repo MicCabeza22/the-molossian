@@ -1,6 +1,9 @@
 package com.codeup.themolossian.models;
 
 import javax.persistence.*;
+
+import org.hibernate.validator.constraints.NotBlank;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -13,6 +16,7 @@ public class Game {
     private long id;
 
     @Column(columnDefinition = "text")
+    @NotBlank(message="The game must have a description!")
     private String description;
 
     @OneToOne
@@ -33,9 +37,11 @@ public class Game {
     private int rating;
 
     @Column
+    @NotBlank(message="The game must have a release date!")
     private java.time.LocalDate releaseDate;
 
     @Column(nullable = false, unique = true)
+    @NotBlank(message="The game must have a title!")
     private String title;
 
     @ManyToMany(mappedBy = "games")
