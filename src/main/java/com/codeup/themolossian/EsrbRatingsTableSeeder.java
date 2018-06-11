@@ -28,7 +28,7 @@ public class EsrbRatingsTableSeeder implements CommandLineRunner {
 		List<EsrbRating> esrbRatings = Arrays.asList(
 			new EsrbRating("EC (Early Childhood)"),
 			new EsrbRating("E (Everyone)"),
-			new EsrbRating("E10+ (Everyone 10+"),
+			new EsrbRating("E10+ (Everyone 10+)"),
 			new EsrbRating("T (Teen)"),
 			new EsrbRating("M (Mature)"),
 			new EsrbRating("AO (Adults Only)")

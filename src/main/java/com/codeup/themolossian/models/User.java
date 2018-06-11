@@ -1,8 +1,6 @@
 package com.codeup.themolossian.models;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import java.util.List;
 
@@ -17,20 +15,15 @@ public class User {
     private long id;
 
     @Column(nullable = false, unique = true)
-    @NotNull
     private String email;
 
     @OneToOne
     private Image image;
 
     @Column(nullable = false)
-    @NotNull
-    @Size(min = 5, max = 15)
     private String password;
 
     @Column(nullable = false, unique = true)
-    @NotNull
-    @Size(min = 5, max = 15)
     private String username;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
